@@ -1,4 +1,28 @@
+
 ![Kubernetes Logo](https://s28.postimg.org/lf3q4ocpp/k8s.png)
+
+## 说明 目前K8S Aws 部署图
+- 使用阿里云镜像副本
+- 使用默认calico 网络插件
+- 使用AMi CentOS Linux release 7.3.1611 (Core)
+- 镜像仓库使用Harbor(自行安装)
+
+![Kubernetes Logo](http://omwdjgaw1.bkt.clouddn.com/aws-k8s.png)
+
+
+## 部署安装流程
+- 初始环境 关闭selinux 防火墙
+- 先安装 Ansible
+- git clone https://github.com/net592/kargo-aws-k8s
+
+
+
+
+
+
+
+
+
 
 ## Deploy a production ready kubernetes cluster
 
