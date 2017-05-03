@@ -2,7 +2,7 @@
 ![Kubernetes Logo](https://s28.postimg.org/lf3q4ocpp/k8s.png)
 
 ## 说明 目前K8S Aws 部署图 
-- 使用阿里云镜像副本 一键部署k8s 1.6.1 高可用
+- 使用阿里云谷歌镜像副本免翻墙之苦 一键部署当前 k8s 1.6.1 高可用
 - 使用默认calico 网络插件
 - 使用AMi CentOS Linux release 7.3.1611 (Core)
 - 镜像仓库使用Harbor(自行安装)
@@ -154,7 +154,7 @@ kube-master
 ```
 
 ## 一键部署
-# 走你(没梯子先 load 好镜像)
+# 走你(没梯子先 load镜像也行，已经更换成阿里云镜像直接用就可以了)
 cd kargo-aws-k8s
 # 1.使用AWS 自带的Key 如 awsdockerkey.pem
 
