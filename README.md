@@ -181,7 +181,13 @@ cd kargo-aws-k8s
 CONFIG_FILE=inventory/inventory.cfg python3 contrib/inventory_builder/inventory.py ${IPS}
 ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=./awsdockerkey.pem -u centos --limit node6
 ```
-
+# 网络插件calico 因为AWS默认不支持ＢＧＰ路由
+所以　需要开启　ip2ip 功能 以保证路由可达（如果非AWS环境可以设置false）
+```
+kargo-aws-k8s/roles/network_plugin/calico/defaults/main.yml
+# Use IP-over-IP encapsulation across hosts
+ipip: true
+```
 
 ##  Deploy a production ready kubernetes cluster
 有兴趣可以关注官方版本
