@@ -154,25 +154,25 @@ kube-master
 ```
 
 ## 一键部署
-# 走你(没梯子先 load镜像也行，已经更换成阿里云镜像直接用就可以了)
+- 走你(没梯子先 load镜像也行，已经更换成阿里云镜像直接用就可以了)
 cd kargo-aws-k8s
-# 1.使用AWS 自带的Key 如 awsdockerkey.pem
+## 1.使用AWS 自带的Key 如 awsdockerkey.pem
 
 ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=./awsdockerkey.pem -u centos
 
 
-# 2.使用私钥指定的是每个虚拟机 ssh 目录下的私钥
+## 2.使用私钥指定的是每个虚拟机 ssh 目录下的私钥
 ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=~/.ssh/id_rsa
 
 
 
-# 重置清除所有配置
-# 卸载
+## 重置清除所有配置
+## 卸载
 
 cd kargo
 
 ansible-playbook -i inventory/inventory.cfg reset.yml -b -v --private-key=~/.ssh/id_rsa
-# 增加节点 如增加 node6
+## 增加节点 如增加 node6
 ```
 # 定义集群 IP
 IPS=(10.0.0.1 10.0.0.2 10.0.0.3  10.0.0.4 10.0.0.5 10.0.0.6)
@@ -181,7 +181,7 @@ cd kargo-aws-k8s
 CONFIG_FILE=inventory/inventory.cfg python3 contrib/inventory_builder/inventory.py ${IPS}
 ansible-playbook -i inventory/inventory.cfg cluster.yml -b -v --private-key=./awsdockerkey.pem -u centos --limit node6
 ```
-# 网络插件calico 因为AWS默认不支持ＢＧＰ路由
+## 网络插件calico 因为AWS默认不支持ＢＧＰ路由
 所以　需要开启　ip2ip 功能 以保证路由可达（如果非AWS环境可以设置false）
 ```
 kargo-aws-k8s/roles/network_plugin/calico/defaults/main.yml
@@ -191,3 +191,8 @@ ipip: true
 
 ##  Deploy a production ready kubernetes cluster
 有兴趣可以关注官方版本
+
+## Kargo部署高可用实现原理
+```
+通过每个Node节点 启动Nginx-Proxy 注入多台Master-Api-server 来实现高可用，简单直接粗暴，目前在线上运行正常
+```
